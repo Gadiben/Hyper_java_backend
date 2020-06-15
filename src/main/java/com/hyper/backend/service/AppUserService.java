@@ -29,7 +29,7 @@ public class AppUserService implements IAppUserService{
 		if (appuser.isPresent()){
 			return appuser.get();
 		}else {
-			throw new NotFoundException(id);
+			throw new NotFoundException(id, "app user");
 		}
 	}
 

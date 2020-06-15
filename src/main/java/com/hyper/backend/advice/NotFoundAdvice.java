@@ -1,4 +1,4 @@
-package com.hyper.backend;
+package com.hyper.backend.advice;
 import com.hyper.backend.exception.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -12,7 +12,7 @@ class NotFoundAdvice {
   @ResponseBody
   @ExceptionHandler(NotFoundException.class)
   @ResponseStatus(HttpStatus.NOT_FOUND)
-  String employeeNotFoundHandler(NotFoundException ex) {
+  String notFoundHandler(NotFoundException ex) {
     return ex.getMessage();
   }
 }

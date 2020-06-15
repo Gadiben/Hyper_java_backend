@@ -1,4 +1,4 @@
-package com.hyper.backend;
+package com.hyper.backend.endpoints;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
