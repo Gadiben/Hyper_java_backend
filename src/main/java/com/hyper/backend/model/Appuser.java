@@ -2,7 +2,12 @@ package com.hyper.backend.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +18,7 @@ import java.util.List;
  */
 @Entity
 @NamedQuery(name="Appuser.findAll", query="SELECT a FROM Appuser a")
-public class Appuser implements Serializable {
+public class Appuser implements Serializable, UserDetails {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -32,6 +37,8 @@ public class Appuser implements Serializable {
 	private BigDecimal longitude;
 
 	private String pseudo;
+	
+	private String password;
 
 	//bi-directional many-to-one association to Post
 	@OneToMany(mappedBy="appuser")
@@ -100,6 +107,14 @@ public class Appuser implements Serializable {
 		this.pseudo = pseudo;
 	}
 
+	public String getPassword() {
+		return this.password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 	public List<Post> getPosts() {
 		return this.posts;
 	}
@@ -144,4 +159,37 @@ public class Appuser implements Serializable {
 		return userLibrairy;
 	}
 
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return null;
+	}
+
+	@Override
+	public String getUsername() {
+		return this.pseudo;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
+
+	public boolean equals(Appuser user) {
+		return this.getId().equals(user.getId());
+	}
 }
