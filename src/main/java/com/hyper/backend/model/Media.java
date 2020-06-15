@@ -1,4 +1,4 @@
-package model;
+package com.hyper.backend.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
