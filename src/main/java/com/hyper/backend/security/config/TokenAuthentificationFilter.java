@@ -33,8 +33,6 @@ final class TokenAuthenticationFilter extends AbstractAuthenticationProcessingFi
       .orElseThrow(() -> new BadCredentialsException("Missing Authentication Token"));
     
     final Authentication auth = new UsernamePasswordAuthenticationToken(token, token);
-    System.out.println("In the filter");
-    System.out.println(auth);
     try {
     	Authentication res = getAuthenticationManager().authenticate(auth);
         return res;
@@ -51,8 +49,7 @@ final class TokenAuthenticationFilter extends AbstractAuthenticationProcessingFi
     final HttpServletResponse response,
     final FilterChain chain,
     final Authentication authResult) throws IOException, ServletException {
-	  System.out.println("Success in authentication");
-    super.successfulAuthentication(request, response, chain, authResult);
-    chain.doFilter(request, response);
+	  super.successfulAuthentication(request, response, chain, authResult);
+      chain.doFilter(request, response);
   }
 }

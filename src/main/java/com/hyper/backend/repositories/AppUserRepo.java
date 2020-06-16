@@ -13,4 +13,5 @@ public interface AppUserRepo extends JpaRepository<Appuser, Integer>{
 	@Query(" select u from Appuser u " +
             " where u.pseudo = ?1")
 	Optional<Appuser> findUserWithName(String name);
+	
 }

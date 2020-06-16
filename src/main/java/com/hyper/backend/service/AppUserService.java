@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.hyper.backend.exception.NotFoundException;
 import com.hyper.backend.model.Appuser;
 import com.hyper.backend.repositories.AppUserRepo;
+import com.hyper.backend.utils.NotNullBeanUtils;
 
 @Service
 public class AppUserService implements IAppUserService, UserDetailsService {
@@ -43,6 +44,21 @@ public class AppUserService implements IAppUserService, UserDetailsService {
         Appuser user = appuserRepository.findUserWithName(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
         return user;
+	}
+	
+	@Override
+	public Appuser update(Appuser appuser) {
+		Integer id = appuser.getId();
+		Appuser originalUser = this.findById(appuser.getId());
+		try {
+			NotNullBeanUtils.copyProperties(appuser, originalUser);
+			appuserRepository.save(originalUser);
+			return originalUser;
+		} catch (Exception e) {
+			System.out.println(e);
+			throw new NotFoundException(id, "app user");
+		}
+		
 	}
 
 }
