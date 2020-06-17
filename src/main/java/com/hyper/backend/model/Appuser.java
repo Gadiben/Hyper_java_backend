@@ -38,7 +38,7 @@ public class Appuser implements Serializable, UserDetails {
 
 	private String pseudo;
 	
-	private String password;
+	transient private String password;
 
 	//bi-directional many-to-one association to Post
 	@OneToMany(mappedBy="appuser")

@@ -58,6 +58,11 @@ public class AppUserEndpoint {
         return appUserService.update(modifiedAppuser);
     }
     
+    @PostMapping("/users")
+    public Appuser postAppUser(@RequestBody Appuser modifiedAppuser) {
+    	return appUserService.save(modifiedAppuser);
+    }
+    
     @PostMapping("/login")
     public String login(
     		@RequestParam("username") final String username,
