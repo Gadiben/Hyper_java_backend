@@ -11,4 +11,5 @@ public interface IAppUserService {
 	Appuser findById(Integer id);
 	Appuser loadUserByUsername(String name);
 	Appuser update(Appuser appuser);
+	Appuser save(Appuser appuser);
 }
