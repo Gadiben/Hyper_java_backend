@@ -35,14 +35,12 @@ public class AppUserEndpoint {
 
     @GetMapping("/users")
     public List<Appuser> listUsers() {
-
     	List<Appuser> appusers = (List<Appuser>) appUserService.findAll();
         return appusers;
     }
     
     @GetMapping("/users/{id}")
     public Appuser retrieveAppuser(@PathVariable Integer id) {
-
     	Appuser appuser = (Appuser) appUserService.findById(id);
         return appuser;
     }

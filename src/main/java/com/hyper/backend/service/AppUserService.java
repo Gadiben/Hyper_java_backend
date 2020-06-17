@@ -30,7 +30,6 @@ public class AppUserService implements IAppUserService, UserDetailsService {
 
 	@Override
 	public Appuser findById(Integer id) {
-		// TODO Auto-generated method stub
 		Optional<Appuser> appuser = appuserRepository.findById(id);
 		if (appuser.isPresent()){
 			return appuser.get();

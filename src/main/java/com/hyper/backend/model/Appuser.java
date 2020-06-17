@@ -36,9 +36,22 @@ public class Appuser implements Serializable, UserDetails {
 
 	private BigDecimal longitude;
 
+	public Appuser(Integer id, Date dateOfBirth, String email, String gender, BigDecimal latitude, BigDecimal longitude,
+			String pseudo, String password) {
+		super();
+		this.id = id;
+		this.dateOfBirth = dateOfBirth;
+		this.email = email;
+		this.gender = gender;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.pseudo = pseudo;
+		this.password = password;
+	}
+
 	private String pseudo;
 	
-	transient private String password;
+	private String password;
 
 	//bi-directional many-to-one association to Post
 	@OneToMany(mappedBy="appuser")

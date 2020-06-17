@@ -3,6 +3,7 @@ package com.hyper.backend.security.config;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -26,7 +27,8 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled=true)
-class SecurityConfig extends WebSecurityConfigurerAdapter {
+@Profile(value = {"dev", "production"})
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
   private static final RequestMatcher PROTECTED_URLS = new OrRequestMatcher(
     new AntPathRequestMatcher("/users/{id}","PUT"),
     new AntPathRequestMatcher("/users/{id}","PATCH")
@@ -83,7 +85,6 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Bean
   SimpleUrlAuthenticationSuccessHandler successHandler() {
-	System.out.println("Success in SimpleUrlAuthenticationSuccessHandler");
     final SimpleUrlAuthenticationSuccessHandler successHandler = new SimpleUrlAuthenticationSuccessHandler();
     successHandler.setRedirectStrategy(new NoRedirectStrategy());
     return successHandler;
