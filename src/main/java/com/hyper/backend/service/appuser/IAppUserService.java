@@ -1,4 +1,4 @@
-package com.hyper.backend.service;
+package com.hyper.backend.service.appuser;
 
 import java.util.List;
 import java.util.Optional;

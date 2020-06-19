@@ -1,4 +1,4 @@
-package com.hyper.backend.service;
+package com.hyper.backend.service.authentication;
 
 import java.util.Optional;
 

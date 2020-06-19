@@ -31,7 +31,9 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
   private static final RequestMatcher PROTECTED_URLS = new OrRequestMatcher(
     new AntPathRequestMatcher("/users/{id}","PUT"),
-    new AntPathRequestMatcher("/users/{id}","PATCH")
+    new AntPathRequestMatcher("/users/{id}","PATCH"),
+    new AntPathRequestMatcher("/logout","POST")
+    
   );
   private static final RequestMatcher PUBLIC_URLS = new NegatedRequestMatcher(PROTECTED_URLS);
 

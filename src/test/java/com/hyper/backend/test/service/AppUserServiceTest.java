@@ -21,7 +21,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.hyper.backend.model.Appuser;
 import com.hyper.backend.repositories.AppUserRepo;
-import com.hyper.backend.service.AppUserService;
+import com.hyper.backend.service.appuser.AppUserService;
 
 @RunWith(SpringRunner.class)
 public class AppUserServiceTest {
