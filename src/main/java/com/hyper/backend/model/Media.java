@@ -2,6 +2,9 @@ package com.hyper.backend.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 import java.util.List;
 
@@ -30,22 +33,27 @@ public class Media implements Serializable {
 
 	//bi-directional one-to-one association to Film
 	@OneToOne(mappedBy="media")
+	@JsonIgnore
 	private Film film;
 
 	//bi-directional many-to-one association to Post
 	@OneToMany(mappedBy="media")
+	@JsonIgnore
 	private List<Post> posts;
 
 	//bi-directional one-to-one association to Tvshow
 	@OneToOne(mappedBy="media")
+	@JsonIgnore
 	private Tvshow tvshow;
 
 	//bi-directional many-to-one association to UserLibrairy
 	@OneToMany(mappedBy="media")
+	@JsonIgnore
 	private List<UserLibrairy> userLibrairies;
 
 	//bi-directional one-to-one association to VideoGame
 	@OneToOne(mappedBy="media")
+	@JsonIgnore
 	private VideoGame videoGame;
 
 	public Media() {

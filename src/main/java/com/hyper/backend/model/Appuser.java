@@ -6,6 +6,8 @@ import javax.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Date;
@@ -27,7 +29,7 @@ public class Appuser implements Serializable, UserDetails {
 	@Temporal(TemporalType.DATE)
 	@Column(name="date_of_birth")
 	private Date dateOfBirth;
-
+	@JsonIgnore
 	private String email;
 
 	private String gender;
@@ -36,15 +38,31 @@ public class Appuser implements Serializable, UserDetails {
 
 	private BigDecimal longitude;
 
+	public Appuser(Integer id, Date dateOfBirth, String email, String gender, BigDecimal latitude, BigDecimal longitude,
+			String pseudo, String password) {
+		super();
+		this.id = id;
+		this.dateOfBirth = dateOfBirth;
+		this.email = email;
+		this.gender = gender;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.pseudo = pseudo;
+		this.password = password;
+	}
+
 	private String pseudo;
 	
-	transient private String password;
+	@JsonIgnore
+	private String password;
 
 	//bi-directional many-to-one association to Post
+	@JsonIgnore
 	@OneToMany(mappedBy="appuser")
 	private List<Post> posts;
 
 	//bi-directional many-to-one association to UserLibrairy
+	@JsonIgnore
 	@OneToMany(mappedBy="appuser")
 	private List<UserLibrairy> userLibrairies;
 
@@ -158,7 +176,7 @@ public class Appuser implements Serializable, UserDetails {
 
 		return userLibrairy;
 	}
-
+	@JsonIgnore
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return null;
@@ -169,21 +187,22 @@ public class Appuser implements Serializable, UserDetails {
 		return this.pseudo;
 	}
 
+	@JsonIgnore
 	@Override
 	public boolean isAccountNonExpired() {
 		return true;
 	}
-
+	@JsonIgnore
 	@Override
 	public boolean isAccountNonLocked() {
 		return true;
 	}
-
+	@JsonIgnore
 	@Override
 	public boolean isCredentialsNonExpired() {
 		return true;
 	}
-
+	@JsonIgnore
 	@Override
 	public boolean isEnabled() {
 		return true;

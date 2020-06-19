@@ -1,4 +1,4 @@
-package com.hyper.backend.service;
+package com.hyper.backend.service.appuser;
 
 import java.util.Optional;
 import java.util.List;
@@ -30,7 +30,6 @@ public class AppUserService implements IAppUserService, UserDetailsService {
 
 	@Override
 	public Appuser findById(Integer id) {
-		// TODO Auto-generated method stub
 		Optional<Appuser> appuser = appuserRepository.findById(id);
 		if (appuser.isPresent()){
 			return appuser.get();

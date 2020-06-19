@@ -1,4 +1,4 @@
-package com.hyper.backend.service;
+package com.hyper.backend.service.authentication;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hyper.backend.model.Appuser;
+import com.hyper.backend.service.appuser.IAppUserService;
 
 @Service
 public class UserAuthService implements IAppUserAuthentificationService {

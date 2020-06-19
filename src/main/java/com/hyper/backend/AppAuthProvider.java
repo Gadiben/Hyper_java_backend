@@ -8,7 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.hyper.backend.service.AppUserService;
+import com.hyper.backend.service.appuser.AppUserService;
 
 public class AppAuthProvider extends DaoAuthenticationProvider {
 
